@@ -1,6 +1,21 @@
 
-```c++ filename="demo.cpp" {3} copy
-int a = 1;
-
-console.log(a);
+```js filename="getImages.js" {3} copy
+export async function GET(request: Request) {
+  try{
+    //fetch items photos with prisma
+    const data = await prisma.menuimages.findMany({
+      select: {
+        "foodid":true, 
+        "imagesrc":true, 
+        "name":true,
+        "category":true
+      }
+    })
+    //console.log('getImages data:', NextResponse.json(data));
+    return NextResponse.json(data)
+  }catch(error){
+    console.log('getImages error:', error);
+    return null
+  }
+}
 ```
