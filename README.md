@@ -1,23 +1,17 @@
-# Nextra Docs Template 
+# This is the Documentaion for Team Mu's Project 3! 
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+In our project we developed a web application for the Houston Street Subs team that is meant to be a Point of Sale system.
 
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
+We have the pages for Customers, Employees, and Managers!
 
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
+It is all created in NextJS 13, an experiemntal build of NextJS with cutting edge routing and API capability, as well as other improvements you can read about at the [NextJS 13 Beta Docs](https://beta.nextjs.org/docs).
 
-## Quick Start
+We wrote our back end in PostgreSQL and are using [Prisma](https://www.prisma.io) as a connection.
 
-Click the button to clone this repository and deploy it on Vercel:
+We utilize Prisma when making API calls that no function as a protected GET request that interacts directly with our PostgreSQL server!
 
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+NextJS 13 allows us to "type" our requests so that we can protect against malicious actors who might try to manipulate end points and edit our database.
 
-## Local Development
+### You can find the whole project on our GitHub page [here](https://github.com/csce-331-ritchey-2023a/project3-mu)!
 
-First, run `pnpm i` to install the dependencies.
-
-Then, run `pnpm dev` to start the development server and visit localhost:3000.
-
-## License
-
-This project is licensed under the MIT License.
+## Thanks and Gig 'Em!!
