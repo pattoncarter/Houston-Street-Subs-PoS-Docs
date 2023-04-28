@@ -1,5 +1,7 @@
 
-```js filename="getImages.js" {3} copy
+# /api/getImages
+
+```ts filename="route.ts" {3} copy
 export async function GET(request: Request) {
   try{
     //fetch items photos with prisma
@@ -19,3 +21,18 @@ export async function GET(request: Request) {
   }
 }
 ```
+# Purpose
+This API is used as a secure SQL query to retrieve all of the items from the Houston Street Subs MenuImages table which cintains all items displayed on the client side.
+
+# Parameters
+This API requires no paramters to call. It can be reached using /api/getImages.
+
+# Response
+This API returns a NextResponse Object which contains a list of all items in the MenuImages table on the database. Each one of these items is a JSON object that contains members:
+
+foodid: Int, Item identification number used by the system
+imagesrc: String, local path to image of item
+name: String, Name of item
+category: String, one of these choices: ['Sand', 'Side', 'Soup', 'Salad']
+
+All items returned by NextResponse in JSON format for easy traversal and usage.

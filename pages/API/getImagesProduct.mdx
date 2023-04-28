@@ -1,0 +1,57 @@
+# /api/getImagesProduct
+
+```ts filename="route.ts" {3} copy
+export async function GET(request: Request) {
+  try {
+    // fetch items photos with prisma
+    const data = await prisma.menuimages.findMany({
+      select: {
+        "foodid": true, 
+        "imagesrc": true, 
+        "name": true,
+        "category": true
+      }
+    })
+
+    // map the data to Product interface
+    const products: Product[] = data.map((item) => {
+      return {
+        id: item.foodid,
+        name: item.name !== null ? item.name : "",
+        price: 0, // replace with actual price
+        imagePath: item.imagesrc !== null ? item.imagesrc : ""
+      }
+    })
+    return NextResponse.json(products);
+  } catch (error) {
+    console.log('getImagesProduct error:', error);
+    return null;
+  }
+}
+```
+# Purpose
+This API is used as a secure SQL query to retrieve all of the items from the Houston Street Subs MenuImages table which cintains all items displayed on the client side. These items are then individually mapped to the Product interface which is used to populate the item view in a more concise way. This api is functionally pretty much the same as getImages except it will connect these returned items to the Product interface.
+
+# Parameters
+This API requires no paramters to call. It can be reached using /api/getImages/Product.
+
+# Product Interface
+```ts filename="route.ts" {3} copy
+export interface Product{
+    id: number;
+    name: string;
+    price: number;
+    imagePath: string;
+}
+```
+The Product interface is used throughout the project to simplify the access to properties of a menu item.
+
+# Response
+This API returns a NextResponse Object which contains a list of all items in the MenuImages table on the database. Each one of these items is a JSON object that contains members:
+
+id: number, Item identification number used by the system
+imagePath: String, local path to image of item
+name: String, Name of item
+price: number, price of item
+
+All items returned by NextResponse in JSON format for easy traversal and usage.

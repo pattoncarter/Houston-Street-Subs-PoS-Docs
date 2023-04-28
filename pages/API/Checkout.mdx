@@ -1,0 +1,41 @@
+# /api/Checkout/[slug]
+
+```ts filename="route.ts" {3} copy
+export async function GET(request: Request, { params }: {params: { slug:string}}) {
+  try{
+    //fetch items photos with prisma
+    const data = await prisma.menuimages.findMany({
+      select: {
+        "foodid":true, 
+        "imagesrc":true, 
+        "name":true,
+        "category":true
+      },where:{
+        "foodid":parseInt(params.slug),
+      }
+    })
+    //console.log('Checkout data:', NextResponse.json(data));
+    return NextResponse.json(data)
+  }catch(error){
+    console.log('Checkout error:', error);
+    return null
+  }
+}
+```
+# Purpose
+This API is used as a secure SQL query to the item from the Houston Street Subs MenuImages table which has the matching ID to the route's slug.
+
+I.e. /api/Checkout/221 will return SantaFeChicken which is the item with ID 221.
+
+# Parameters
+This API requires no paramters to call. It can be reached using /api/getImages.
+
+# Response
+This API returns a NextResponse Object which contains the item in the MenuImages table on the database that matches the slug. This item is a JSON object that contains members:
+
+foodid: Int, Item identification number used by the system
+imagesrc: String, local path to image of item
+name: String, Name of item
+category: String, one of these choices: ['Sand', 'Side', 'Soup', 'Salad']
+
+Item is returned by NextResponse in JSON format for easy traversal and usage.

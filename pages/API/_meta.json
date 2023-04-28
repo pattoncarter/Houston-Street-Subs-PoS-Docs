@@ -1,3 +1,4 @@
 {
-    "getImages": "getImages()"
+    "getImages": "getImages",
+    "getImagesProduct": "getImagesProduct"
 }
