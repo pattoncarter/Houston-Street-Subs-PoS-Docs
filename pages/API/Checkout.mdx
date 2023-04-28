@@ -1,41 +1,14 @@
 # /api/Checkout/[slug]
 
 ```ts filename="route.ts" {3} copy
-export async function GET(request: Request, { params }: {params: { slug:string}}) {
-  try{
-    //fetch items photos with prisma
-    const data = await prisma.menuimages.findMany({
-      select: {
-        "foodid":true, 
-        "imagesrc":true, 
-        "name":true,
-        "category":true
-      },where:{
-        "foodid":parseInt(params.slug),
-      }
-    })
-    //console.log('Checkout data:', NextResponse.json(data));
-    return NextResponse.json(data)
-  }catch(error){
-    console.log('Checkout error:', error);
-    return null
-  }
-}
+IN PROGRESS
 ```
 # Purpose
-This API is used as a secure SQL query to the item from the Houston Street Subs MenuImages table which has the matching ID to the route's slug.
-
-I.e. /api/Checkout/221 will return SantaFeChicken which is the item with ID 221.
+This API is used as a secure SQL query to checkout the passed items from the Houston Street Subs Database. This will reflect across a few different tables so that manager databases are updated as well as the customer view.
 
 # Parameters
-This API requires no paramters to call. It can be reached using /api/getImages.
+This API requires a slug parameter to call. It can be reached using /api/Checkout/[...slug]. This slug is to be one or more item ids of a product in the table.
+
+I.e. /api/Checkout/221/222/223 will checkout the items with ID 221, 222, and 223.
 
 # Response
-This API returns a NextResponse Object which contains the item in the MenuImages table on the database that matches the slug. This item is a JSON object that contains members:
-
-foodid: Int, Item identification number used by the system
-imagesrc: String, local path to image of item
-name: String, Name of item
-category: String, one of these choices: ['Sand', 'Side', 'Soup', 'Salad']
-
-Item is returned by NextResponse in JSON format for easy traversal and usage.

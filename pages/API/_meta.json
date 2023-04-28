@@ -1,4 +1,9 @@
 {
     "getImages": "getImages",
+    "getItems": "getItems",
+    "getImagesSalad": "getImagesSalad",
+    "getImagesSand": "getImagesSand",
+    "getImagesSide": "getImagesSide",
+    "getImagesSoup": "getImagesSoup",
     "getImagesProduct": "getImagesProduct"
 }
