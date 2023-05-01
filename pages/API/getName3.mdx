@@ -1,0 +1,32 @@
+# /api/getName
+
+```ts filename="route.ts" {3} copy
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+import {NextResponse} from "next/server"
+//TODO: need to add fucnitonality for parsing through the multiple ints that can be passed
+export async function GET(request: Request, { params } : {params:any}) {
+    //fetch menu items with prisma
+    
+    //Fetch all Sandwich type items
+    const data = await prisma.menu_items_table.findMany({where: {"category" :"Soup"}}) //if category == Sand
+    console.log("here")
+    return NextResponse.json(data)
+}
+```
+# Purpose
+This API is used as a secure SQL query to retrieve all of the menu items from the Houston Street Subs menu which corresponds to the category passed in. 
+In this case it retrieves all menu items of category "Soup"
+
+# Parameters
+This API requires no paramters to call. It can be reached using /api/getName3.
+
+# Response
+This API returns a NextResponse Object which contains a list of all items in the Houston Subs menu table of type "Soup" on the database. Each one of these items is a JSON object that contains members:
+
+foodid: Int, Item identification number used by the system
+imagesrc: String, local path to image of item
+name: String, Name of item
+category: String, one of these choices: ['Sand', 'Side', 'Soup', 'Salad']
+
+All items returned by NextResponse in JSON format for easy traversal and usage.
