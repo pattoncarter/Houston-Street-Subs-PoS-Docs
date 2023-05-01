@@ -1,0 +1,43 @@
+# /api/Get_X_Report
+
+```ts filename="route.ts" {3} copy
+export async function GET(request: Request) {
+  try{
+    //fetch items photos with prisma
+    const data = await prisma.menu_items_table.findMany({
+      select: {
+        "foodid":true, 
+        "name":true, 
+        "price":true,
+        "category":true, 
+        "num_sold":true, 
+        "num_in_stock":true,
+        "min_in_stock": true
+      }
+    })
+    console.log(data);
+    return NextResponse.json(data)
+  }catch(error){
+    console.log('getXReport error:', error);
+    return null
+  }
+}
+```
+# Purpose
+This API is used as a secure SQL query to obtain all information required by a typical X Report, this being all item names, prices, sales, and stock count on the Houston Street Subs Menu.
+
+# Parameters
+This API requires no paramters to call. It can be reached using /api/Get_X_Report.
+
+# Response
+This API returns a NextResponse Object which contains a list of all items in the menu_items(_table) table on the database. Each one of these items is a JSON object that contains members:
+
+foodid: Int, Item identification number used by the system for each item
+name: String, Name of item
+price: int, Cost of each individual item
+category: String, one of these choices: ['Sand', 'Side', 'Soup', 'Salad']
+num_sold: int, Number of individual items sold.
+num_in_stock: int, Number of individual items left in the stock.
+min_in_stock: int, Minimum stock count that can be had at any given time.
+
+All items returned by NextResponse in JSON format for easy traversal and usage.
