@@ -23,20 +23,19 @@ export async function GET(request: Request) {
 }
 ```
 # Purpose
-This API is used as a secure SQL query to obtain all information required by a typical Z Report, this being all item names, item IDs, Units Sold, Cost, Revenue, and Weight per unit and stock count on the Houston Street Subs Menu.
+This API is used as a secure SQL query to obtain all information required by a typical Z Report, this being all item names, item IDs, Units Sold, and the Cost, Revenue, and Weight per unit on the Houston Street Subs Menu.
 
 # Parameters
-This API requires no paramters to call. It can be reached using /api/Get_X_Report.
+This API requires no parameters to call. It can be reached using /api/Get_Z_Report.
 
 # Response
-This API returns a NextResponse Object which contains a list of all items in the menu_items(_table) table on the database. Each one of these items is a JSON object that contains members:
+This API returns a NextResponse Object which contains a list of all items in the sales table on the database. Each one of these items is a JSON object that contains members:
 
-foodid: Int, Item identification number used by the system for each item
-name: String, Name of item
-price: int, Cost of each individual item
-category: String, one of these choices: ['Sand', 'Side', 'Soup', 'Salad']
-num_sold: int, Number of individual items sold.
-num_in_stock: int, Number of individual items left in the stock.
-min_in_stock: int, Minimum stock count that can be had at any given time.
+name: String, Name of an item.
+itemid: Int, Item identification number used by the system for each individual item.
+units_sold: int, The number of items sold individually.
+cost_per_unit: int, The cost of any single item or ingredient.
+revenue_per_unit: int, The actual revenue earned from that item when the report was called for.
+weight_per_unit: int, The weight of every individual item.
 
 All items returned by NextResponse in JSON format for easy traversal and usage.
