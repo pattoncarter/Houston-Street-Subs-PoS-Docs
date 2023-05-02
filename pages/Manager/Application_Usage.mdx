@@ -1,1 +1,15 @@
-# First Manager Function!
+# Navigation
+Navigation tools and objects are placed at the very bottom level inside of the "footer" argument gathered from the app/globals.css file.
+This navigation allows the user to transition between GUI's as a manager would have the priority to do.
+
+# Functionality
+Buttons, Text-Box Input Prompts and dropdown menus are paired together near the top of the GUI, allowing for easy access to any of the Reports
+designed in an earlier stage, in this case the Sales, Excess, X, and Z Reports. The drop-down bar functions nearly spotlessly and allows the
+user to select whether they wish to generate an X report or Z report before pushing the corresponding button. The other buttons have text boxes
+paired with them, meant to be dates input by the user to generate the Sales and Excess reports respectively. However, due to our database 
+not containing valid unique identifiers for every table, this was a function we ahd to leave on the backburner.
+
+# Weather
+A weather API is also implemented, showing in real time the temperature in College STation, where our particular Houston Stree Subs is located.
+The temperature is initially received in Kelvin, but after some real-time calculations this is corrected into Farenheit and then presented to the Manager
+along with an icon ro display the sky's nature and the current humidity.
